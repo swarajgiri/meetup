@@ -6,7 +6,7 @@ use Meetup\Login\Core\Users\UserInterface;
 /**
  * UserData Interface
  *
- * Represents Users Authentication.
+ * Represents Users entity.
  */
 interface UserData extends UserInterface
 {
