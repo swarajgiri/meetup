@@ -4,7 +4,7 @@ namespace Meetup\Login\Core;
 use Meetup\Login\Core\Users\UserInterface;
 
 /**
- * Authentication Interface
+ * UserData Interface
  *
  * Represents Users Authentication.
  */
