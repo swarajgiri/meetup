@@ -13,7 +13,8 @@ class Userlogin implements UserInterface
      *
      * @return void
      */
-    public function setFirstName($firstName){
+    public function setFirstName($firstName)
+    {
         $this->firstname=$firstName;
     }
 
@@ -24,7 +25,8 @@ class Userlogin implements UserInterface
      *
      * @return void
      */
-    public function setLastName($lastName){
+    public function setLastName($lastName)
+    {
         $this->lastname=$lastName;
     }
 
@@ -33,7 +35,8 @@ class Userlogin implements UserInterface
      *
      * @return  string
      */
-    public function getFirstName(){
+    public function getFirstName()
+    {
         return $this->firstName;
     }
 
@@ -42,7 +45,8 @@ class Userlogin implements UserInterface
      *
      * @return  string
      */
-    public function getLastName(){
+    public function getLastName()
+    {
          return $this->lastName;
     }
 
@@ -53,7 +57,8 @@ class Userlogin implements UserInterface
      *
      * @return void
      */
-    public function setEmail($email){
+    public function setEmail($email)
+    {
         $this->email=$email;
     }
 
@@ -62,7 +67,8 @@ class Userlogin implements UserInterface
      *
      * @return  string
      */
-    public function getEmail(){
+    public function getEmail()
+    {
         return $this->email;
     }
 
@@ -75,7 +81,8 @@ class Userlogin implements UserInterface
      *
      * @return void
      */
-    public function setPassword($password){
+    public function setPassword($password)
+    {
         $this->password=password_hash($password, PASSWORD_DEFAULT);
     }
 
@@ -84,7 +91,8 @@ class Userlogin implements UserInterface
      *
      * @return  string
      */
-    public function getPassword($password){
+    public function getPassword($password)
+    {
         return $this->password;
     }
 
@@ -95,15 +103,18 @@ class Userlogin implements UserInterface
      *
      * @return bool Whether the password is correct
      */
-    public function checkPassword($password){
+    public function checkPassword($password)
+    {
         $hash=password_hash($password, PASSWORD_DEFAULT);
 
         $storedPassword=$this->getPassword();
 
-        if (password_verify($storedPassword, $hash)) {
+        if(password_verify($storedPassword, $hash))
+        {
             echo 'Password is valid!';
         }
-        else {
+        else
+        {
             echo 'Invalid password.';
         }
     }
@@ -113,7 +124,8 @@ class Userlogin implements UserInterface
      *
      * @return  string
      */
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -121,7 +133,8 @@ class Userlogin implements UserInterface
      * returns the User Created Date
      * @return  date
      */
-    public function getCreatedAt(){
+    public function getCreatedAt()
+    {
         return $this->datetime;
     }
 
@@ -132,7 +145,8 @@ class Userlogin implements UserInterface
      *
      * @return void
      */
-    public function setCreatedAt($datetime){
+    public function setCreatedAt($datetime)
+    {
         $this->datetime=$datetime;
     }
 
@@ -140,7 +154,8 @@ class Userlogin implements UserInterface
      * returns the User Created Date
      * @return  date
      */
-    public function getUpdatedAt(){
+    public function getUpdatedAt()
+    {
         return $this->datetime;
     }
 
@@ -151,7 +166,8 @@ class Userlogin implements UserInterface
      *
      * @return void
      */
-    public function setUpdatedAt($datetime){
+    public function setUpdatedAt($datetime)
+    {
         $this->datetime=$datetime;
     }
 
