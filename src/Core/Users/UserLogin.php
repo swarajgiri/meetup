@@ -9,7 +9,7 @@ class UserLogin implements UserInterface
 {
 
 
-/**
+    /**
      * Set first name
      *
      * @param string $firstName
@@ -23,7 +23,7 @@ class UserLogin implements UserInterface
       }
 
 
- /**
+    /**
      * Set last name
      *
      * @param string $lastName
@@ -36,7 +36,7 @@ public function setLastName($lastName)
 
 $this->lastName= $lastName;
 }
-  /**
+    /**
      * Get first name
      *
      * @return string
@@ -47,7 +47,7 @@ $this->lastName= $lastName;
        }
 
 
-  /**
+    /**
      * Get last name
      *
      * @return string
@@ -59,7 +59,7 @@ $this->lastName= $lastName;
 }
 
 
- /**
+    /**
      * Set email
      *
      * @param string $email
@@ -71,7 +71,7 @@ public function setEmail($email){
 
 }
 
-  /**
+    /**
      * Get email
      *
      * @return string
@@ -83,7 +83,7 @@ return $this->email;
 
 }
 
- /**
+    /**
      * Get the ID of the entity
      *
      * @return integer
@@ -91,10 +91,10 @@ return $this->email;
 
 public function getId() 
 {
-return $this->id
+return $this->id;
 
 }
-  /**
+    /**
      * Set createdAt
      *
      * @param \DateTime $datetime
@@ -109,7 +109,7 @@ public function setCreatedAt($datetime)
 }
 
 
-/**
+    /**
      * Get createdAt
      *
      * @return \DateTime
@@ -120,7 +120,7 @@ return $this->datetime;
 
 }
 
-/**
+    /**
      * Set updatedAt
      *
      * @param \DateTime $datetime
@@ -133,7 +133,7 @@ public function setUpdatedAt($datetime)
 
  $this->datetime= $datetime;
 }
-  /**
+    /**
      * Get updatedAt
      *
      * @return \DateTime
@@ -155,11 +155,13 @@ return $this->datetime;
      */
 public function setPassword($password)
 {
-$this->password= $password;
+
+$hash = password_hash($passwod, PASSWORD_DEFAULT);
+$this->hash= $hash;
 }
 
 
- /**
+    /**
      * Check if the provided password matches the stored password.
      *
      * @param string $password Text password
@@ -168,29 +170,19 @@ $this->password= $password;
      */
 public function checkPassword($password)
 {
- if (!preg_match_all('$\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$', $password)){
-return FALSE;
 
+if (password_verify($password, $hash)) {
+  return True;  // Success!
 }
+else {
+    return FALSE; // Invalid credentials
+}
+ 
        
-    else {
-return TRUE;
-}
+   
 }
 
-$object = new UserLogin();
-$object->setFirstName("demo");
-$object->getFirstName();
-
-$object->setLastName("test");
-$object->getLastName();
-
-$object->setEmail("test@impelsys.com");
-$object->getEmail();
-
-$object->setPassword("impelsys");
-$object->checkPassword("impelsys");
 
 
 
-
+}

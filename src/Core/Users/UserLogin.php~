@@ -91,7 +91,7 @@ return $this->email;
 
 public function getId() 
 {
-return $this->id
+return $this->id;
 
 }
   /**
@@ -155,11 +155,13 @@ return $this->datetime;
      */
 public function setPassword($password)
 {
-$this->password= $password;
+
+$hash = password_hash($passwod, PASSWORD_DEFAULT);
+$this->hash= $hash;
 }
 
 
- /**
+  /**
      * Check if the provided password matches the stored password.
      *
      * @param string $password Text password
@@ -168,29 +170,22 @@ $this->password= $password;
      */
 public function checkPassword($password)
 {
- if (!preg_match_all('$\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$', $password)){
-return FALSE;
 
+if (password_verify($password, $hash)) {
+  return True;  // Success!
 }
+else {
+    return FALSE; // Invalid credentials
+}
+ 
        
     else {
 return TRUE;
 }
 }
 
-$object = new UserLogin();
-$object->setFirstName("demo");
-$object->getFirstName();
-
-$object->setLastName("test");
-$object->getLastName();
-
-$object->setEmail("test@impelsys.com");
-$object->getEmail();
-
-$object->setPassword("impelsys");
-$object->checkPassword("impelsys");
 
 
 
 
+}
