@@ -7,12 +7,12 @@ interface Userlogin implement UserInterface
 {
 
     /**
-    * Set first name
-    *
-    * @param string $firstName
-    *
-    * @return void
-    */
+     * Set first name
+     *
+     * @param string $firstName
+     *
+     * @return void
+     */
     public function setFirstName($firstName){
         $this->firstname=$firstName;
     }
@@ -52,7 +52,7 @@ interface Userlogin implement UserInterface
      * @param string $firstName
      *
      * @return void
-    */
+     */
     public function setEmail($email){
         $this->email=$email;
     }
@@ -76,8 +76,16 @@ interface Userlogin implement UserInterface
      * @return void
      */
     public function setPassword($password){
-        $this->password=$password;
+        $this->password=password_hash($password, PASSWORD_DEFAULT);
+    }
 
+    /**
+     * returns the User hashed Password
+     *
+     * @return  string
+     */
+    public function getPassword($password){
+        return $this->password;
     }
 
     /**
@@ -88,19 +96,16 @@ interface Userlogin implement UserInterface
      * @return bool Whether the password is correct
      */
     public function checkPassword($password){
-             $errors_init = $errors;
+        $hash=password_hash($password, PASSWORD_DEFAULT);
 
-            if (strlen($password) < 8) {
-                $errors[] = "Password too short!";
-            }
-            if (!preg_match("#[0-9]+#", $password)) {
-                $errors[] = "Password must include at least one number!";
-            }
-            if (!preg_match("#[a-zA-Z]+#", $password)) {
-                $errors[] = "Password must include at least one letter!";
-            }
+        $storedPassword=$this->getPassword();
 
-            return ($errors == $errors_init);
+        if (password_verify($storedPassword, $hash)) {
+            echo 'Password is valid!';
+        }
+        else {
+            echo 'Invalid password.';
+        }
     }
 
     /**
@@ -113,9 +118,9 @@ interface Userlogin implement UserInterface
     }
 
     /**
-    * returns the User Created Date
-    * @return  date
-    */
+     * returns the User Created Date
+     * @return  date
+     */
     public function getCreatedAt(){
         return $this->datetime;
     }
@@ -134,7 +139,7 @@ interface Userlogin implement UserInterface
     /**
      * returns the User Created Date
      * @return  date
-    */
+     */
     public function getUpdatedAt(){
         return $this->datetime;
     }
