@@ -3,7 +3,7 @@ namespace Meetup\Login\Core;
 
 use Meetup\Login\Core\Users\UserInterface;
 
-interface Userlogin implement UserInterface
+class Userlogin implements UserInterface
 {
 
     /**
