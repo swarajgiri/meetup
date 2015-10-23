@@ -9,7 +9,7 @@ class UserLogin implements UserInterface
 {
 
 
-/**
+    /**
      * Set first name
      *
      * @param string $firstName
@@ -23,7 +23,7 @@ class UserLogin implements UserInterface
       }
 
 
- /**
+    /**
      * Set last name
      *
      * @param string $lastName
@@ -36,7 +36,7 @@ public function setLastName($lastName)
 
 $this->lastName= $lastName;
 }
-  /**
+    /**
      * Get first name
      *
      * @return string
@@ -47,7 +47,7 @@ $this->lastName= $lastName;
        }
 
 
-  /**
+    /**
      * Get last name
      *
      * @return string
@@ -59,7 +59,7 @@ $this->lastName= $lastName;
 }
 
 
- /**
+    /**
      * Set email
      *
      * @param string $email
@@ -71,7 +71,7 @@ public function setEmail($email){
 
 }
 
-  /**
+    /**
      * Get email
      *
      * @return string
@@ -83,7 +83,7 @@ return $this->email;
 
 }
 
- /**
+    /**
      * Get the ID of the entity
      *
      * @return integer
@@ -94,7 +94,7 @@ public function getId()
 return $this->id;
 
 }
-  /**
+    /**
      * Set createdAt
      *
      * @param \DateTime $datetime
@@ -109,7 +109,7 @@ public function setCreatedAt($datetime)
 }
 
 
-/**
+    /**
      * Get createdAt
      *
      * @return \DateTime
@@ -120,7 +120,7 @@ return $this->datetime;
 
 }
 
-/**
+    /**
      * Set updatedAt
      *
      * @param \DateTime $datetime
@@ -133,7 +133,7 @@ public function setUpdatedAt($datetime)
 
  $this->datetime= $datetime;
 }
-  /**
+    /**
      * Get updatedAt
      *
      * @return \DateTime
@@ -156,12 +156,12 @@ return $this->datetime;
 public function setPassword($password)
 {
 
-$hash = password_hash($passwod, PASSWORD_DEFAULT);
-$this->hash= $hash;
+$password = password_hash($passwod, PASSWORD_DEFAULT);
+$this->password= $password;
 }
 
 
-  /**
+    /**
      * Check if the provided password matches the stored password.
      *
      * @param string $password Text password
@@ -170,8 +170,8 @@ $this->hash= $hash;
      */
 public function checkPassword($password)
 {
-
-if (password_verify($password, $hash)) {
+$hash = password_hash($passwod, PASSWORD_DEFAULT);
+if (password_verify($hash, $password,)) {
   return True;  // Success!
 }
 else {
@@ -179,11 +179,8 @@ else {
 }
  
        
-    else {
-return TRUE;
+   
 }
-}
-
 
 
 

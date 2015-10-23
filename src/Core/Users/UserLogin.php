@@ -4,10 +4,7 @@ namespace Meetup\Login\Core;
 
 use Meetup\Login\Core\Users\UserInterface;
 
-
-class UserLogin implements UserInterface
-{
-
+class UserLogin implements UserInterface {
 
     /**
      * Set first name
@@ -16,12 +13,9 @@ class UserLogin implements UserInterface
      *
      * @return void
      */
-
-
-      public function setFirstName($firstName){
-           $this->firstName= $firstName;
-      }
-
+    public function setFirstName($firstName) {
+        $this->firstName = $firstName;
+    }
 
     /**
      * Set last name
@@ -30,34 +24,29 @@ class UserLogin implements UserInterface
      *
      * @return void
      */
+    public function setLastName($lastName) {
 
-public function setLastName($lastName)
-{
+        $this->lastName = $lastName;
+    }
 
-$this->lastName= $lastName;
-}
     /**
      * Get first name
      *
      * @return string
      */
-
-       public function getFirstName(){
-           return $this->firstName;
-       }
-
+    public function getFirstName() {
+        return $this->firstName;
+    }
 
     /**
      * Get last name
      *
      * @return string
      */
-    public function getLastName()
-{
+    public function getLastName() {
 
- return $this->lastName;
-}
-
+        return $this->lastName;
+    }
 
     /**
      * Set email
@@ -66,34 +55,29 @@ $this->lastName= $lastName;
      *
      * @return void
      */
-public function setEmail($email){
- $this->email= $email;
-
-}
+    public function setEmail($email) {
+        $this->email = $email;
+    }
 
     /**
      * Get email
      *
      * @return string
      */
+    public function getEmail() {
 
-public function getEmail(){
-
-return $this->email;
-
-}
+        return $this->email;
+    }
 
     /**
      * Get the ID of the entity
      *
      * @return integer
      */
+    public function getId() {
+        return $this->id;
+    }
 
-public function getId() 
-{
-return $this->id;
-
-}
     /**
      * Set createdAt
      *
@@ -101,24 +85,19 @@ return $this->id;
      *
      * @return void
      */
-public function setCreatedAt($datetime)
-{
+    public function setCreatedAt($datetime) {
 
- $this->datetime= $datetime;
-
-}
-
+        $this->datetime = $datetime;
+    }
 
     /**
      * Get createdAt
      *
      * @return \DateTime
      */
-public function getCreatedAt() 
-{
-return $this->datetime;
-
-}
+    public function getCreatedAt() {
+        return $this->datetime;
+    }
 
     /**
      * Set updatedAt
@@ -127,22 +106,20 @@ return $this->datetime;
      *
      * @return void
      */
+    public function setUpdatedAt($datetime) {
 
-public function setUpdatedAt($datetime)
-{
+        $this->datetime = $datetime;
+    }
 
- $this->datetime= $datetime;
-}
     /**
      * Get updatedAt
      *
      * @return \DateTime
      */
-public function getUpdatedAt(){
+    public function getUpdatedAt() {
 
-return $this->datetime;
-
-}
+        return $this->datetime;
+    }
 
     /**
      * Set Password.
@@ -153,13 +130,11 @@ return $this->datetime;
      *
      * @return void
      */
-public function setPassword($password)
-{
+    public function setPassword($password) {
 
-$hash = password_hash($passwod, PASSWORD_DEFAULT);
-$this->hash= $hash;
-}
-
+        $password = password_hash($passwod, PASSWORD_DEFAULT);
+        $this->password = $password;
+    }
 
     /**
      * Check if the provided password matches the stored password.
@@ -168,21 +143,14 @@ $this->hash= $hash;
      *
      * @return bool Whether the password is correct
      */
-public function checkPassword($password)
-{
+    public function checkPassword($password) {
+        $hash = password_hash($passwod, PASSWORD_DEFAULT);
 
-if (password_verify($password, $hash)) {
-  return True;  // Success!
-}
-else {
-    return FALSE; // Invalid credentials
-}
- 
-       
-   
-}
-
-
-
+        if (password_verify($hash, $dbpassword)) {
+            return TRUE;  // Success!
+        } else {
+            return FALSE; // Invalid credentials
+        }
+    }
 
 }
