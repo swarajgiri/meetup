@@ -2,6 +2,13 @@
 namespace Meetup\Login\Core;
 use Meetup\src\Core\Users\UserInterface
 Class User  implements  UserInterface{
+private $firstName;  
+private $lastName;  
+private $createdAt;  
+private $updatedAt;  
+private $email;  
+private $password;  
+
 	public function __construct($email, $password){
 		$this->setEmail($email);
 		$this->setPassword($password);
@@ -13,7 +20,7 @@ Class User  implements  UserInterface{
 		$this->email = $email;
 	}
 	public function checkPassword(){
-		$sql = "SELECT * FROM user WHERE $email='".$this->email."' AND password='".AES_DECRYPT($this->password, 'meetup')."' ";
+		$sql = "SELECT * FROM user WHERE email='".$this->email."' AND password='".md5($this->password)."' ";
 		$query = mysql_query($sql);
 		if(mysql_num_rows() > 0)
 			return mysql_fetch_row($query);
@@ -40,10 +47,10 @@ Class User  implements  UserInterface{
 		$this->createdAt = $createdTime;
 	}
     public function getUpdatedAt(){
-		return $this->updatedTime;
+		return $this->updatedAt;
 	}
     public function setUpdatedAt($datetime){
-		$this->updatedTime = $dateTime;
+		$this->updatedAt = $dateTime;
 		$sql = "SELECT id FROM user WHERE $email='".$this->email."' updated_at='".$datetime."' ";
 		$query = mysql_query($sql);
 	}
