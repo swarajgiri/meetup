@@ -4,18 +4,22 @@ namespace Meetup\Login\Core;
 
 use Meetup\Login\Core\Users\UserInterface
 
-Class User extends UserInterface{
+Class User implements UserInterface 
+{
 
 	public function __construct($email, $password){
 		$this->setEmail($email);
 		$this->setPassword($password);
 	}
+
 	public function setPassword($password){
 		$this->password = $password;
 	}
+
 	public function setEmail($email){
 		$this->email = $email;
 	}
+
 	public function checkPassword(){
 		$sql = "SELECT * FROM user WHERE $email='".$this->email."' AND password='".AES_DECRYPT($this->password, 'meetup')."' ";
 		$query = mysql_query($sql);
