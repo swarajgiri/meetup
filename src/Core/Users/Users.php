@@ -10,11 +10,10 @@ class User implements UserInterface
 	public $password;
 	public $email;
 	public $createdAt;
+	public $datetime;
+	public $firstName;
+	public $lastName;
 
-	public function __construct($userName, $password)
-	{
-		
-	}
 	
 	public function setEmail($email)
 	{
@@ -33,17 +32,29 @@ class User implements UserInterface
 
 	public function checkPassword($password)
 	{
+		if($password == $this->password){
+			return true;
+		}
 
+		return false;
 	}	
 
 	public function getId()
 	{
-		
+		$userName = mysqli_real_escape_string($this->userName);
+		$query = "SELECT userId FROM user where username = '{$userName}' and email = '{$email}'";
+		$result = mysqli_query($query);
+		if(mysqli_num_rows()>0){
+			$row=mysqli_fetch_assoc($result);
+			return $row['userId'];
+		}
+
+		return false;
 	}
 
 	public function getCreatedAt()
 	{
-
+		return $this->createdAt;
 	}
 
 	public function setCreatedAt($datetime)
@@ -73,12 +84,12 @@ class User implements UserInterface
 
 	public function getFirstName()
 	{
-		return $firstName;
+		return $this->firstName;
 	}
 
 	public function getLastName()
 	{
-
+		return $this->lastName;
 	}
 
 }
