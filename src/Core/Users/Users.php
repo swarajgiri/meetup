@@ -6,14 +6,14 @@ use Meetup\Login\Core\Users\UserInterface;
 
 class User implements UserInterface
 {
-	public $userName;
-	public $password;
-	public $email;
-	public $createdAt;
-	public $datetime;
-	public $firstName;
-	public $lastName;
-
+	protected $firstName;
+	protected $lastName;
+	protected $password;
+	protected $email;
+	protected $createdAt;
+	protected $datetime;
+	protected $updatedAt;
+	protected $id;
 	
 	public function setEmail($email)
 	{
@@ -41,15 +41,7 @@ class User implements UserInterface
 
 	public function getId()
 	{
-		$userName = mysqli_real_escape_string($this->userName);
-		$query = "SELECT userId FROM user where username = '{$userName}' and email = '{$email}'";
-		$result = mysqli_query($query);
-		if(mysqli_num_rows()>0){
-			$row=mysqli_fetch_assoc($result);
-			return $row['userId'];
-		}
-
-		return false;
+		return $this->id;
 	}
 
 	public function getCreatedAt()
