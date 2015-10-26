@@ -18,10 +18,5 @@ interface MailableInterface
      */
     public function setEmail($email);
 
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail();
+ 
 }
