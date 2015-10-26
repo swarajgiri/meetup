@@ -160,11 +160,11 @@ class Users implements UserInterface
 
         if(password_verify($storedPassword, $hash))
         {
-            echo 'Password is valid!';
+            return true;
         }
         else
         {
-            echo 'Invalid password.';
+            return false;
         }
     }
 
