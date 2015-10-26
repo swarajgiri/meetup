@@ -31,5 +31,5 @@ interface UserInterface extends StorableInterface, NameableInterface, MailableIn
      *
      * @return bool Whether the password is correct
      */
-   public function checkPassword($password,$dbpassword);
+    public function checkPassword($password);
 }

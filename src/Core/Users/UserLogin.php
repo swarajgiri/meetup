@@ -1,11 +1,16 @@
+
 <?php
 
 namespace Meetup\Login\Core;
 
-use Meetup\Login\Core\Users\UserInterface;
+class User implements UserInterface {
 
-class UserLogin implements UserInterface {
-
+    protected $firstName;
+    protected $lastName;
+    protected $email;
+    protected $createdadte;
+    protected $datetime;
+    protected $password;
     /**
      * Set first name
      *
@@ -16,7 +21,6 @@ class UserLogin implements UserInterface {
     public function setFirstName($firstName) {
         $this->firstName = $firstName;
     }
-
     /**
      * Set last name
      *
@@ -25,10 +29,8 @@ class UserLogin implements UserInterface {
      * @return void
      */
     public function setLastName($lastName) {
-
         $this->lastName = $lastName;
     }
-
     /**
      * Get first name
      *
@@ -37,17 +39,14 @@ class UserLogin implements UserInterface {
     public function getFirstName() {
         return $this->firstName;
     }
-
     /**
      * Get last name
      *
      * @return string
      */
     public function getLastName() {
-
         return $this->lastName;
     }
-
     /**
      * Set email
      *
@@ -58,17 +57,14 @@ class UserLogin implements UserInterface {
     public function setEmail($email) {
         $this->email = $email;
     }
-
     /**
      * Get email
      *
      * @return string
      */
     public function getEmail() {
-
         return $this->email;
     }
-
     /**
      * Get the ID of the entity
      *
@@ -77,28 +73,24 @@ class UserLogin implements UserInterface {
     public function getId() {
         return $this->id;
     }
-
     /**
      * Set createdAt
      *
-     * @param \DateTime $datetime
+     * @param \DateTime $createdadte
      *
      * @return void
      */
-    public function setCreatedAt($datetime) {
-
-        $this->datetime = $datetime;
+    public function setCreatedAt($createdadte) {
+        $this->createdadte = $createdadte;
     }
-
     /**
      * Get createdAt
      *
-     * @return \DateTime
+     * @return \createdadte
      */
     public function getCreatedAt() {
-        return $this->datetime;
+        return $this->createdadte;
     }
-
     /**
      * Set updatedAt
      *
@@ -107,20 +99,16 @@ class UserLogin implements UserInterface {
      * @return void
      */
     public function setUpdatedAt($datetime) {
-
         $this->datetime = $datetime;
     }
-
     /**
      * Get updatedAt
      *
      * @return \DateTime
      */
     public function getUpdatedAt() {
-
         return $this->datetime;
     }
-
     /**
      * Set Password.
      *
@@ -131,11 +119,8 @@ class UserLogin implements UserInterface {
      * @return void
      */
     public function setPassword($password) {
-
-        $password = password_hash($passwod, PASSWORD_DEFAULT);
-        $this->password = $password;
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
     }
-
     /**
      * Check if the provided password matches the stored password.
      *
@@ -143,14 +128,21 @@ class UserLogin implements UserInterface {
      *
      * @return bool Whether the password is correct
      */
-    public function checkPassword($password) {
-        $hash = password_hash($passwod, PASSWORD_DEFAULT);
+    public function checkPassword($password,$dbpassword) {
+        $hash = password_hash($password, PASSWORD_DEFAULT);
+        $dbpassword = $this->getPassword();
 
-        if (password_verify($hash, $dbpassword)) {
-            return TRUE;  // Success!
-        } else {
-            return FALSE; // Invalid credentials
+        if (password_verify($dbpassword, $hash)) {
+            return true;  // Success!
         }
+    }
+    /**
+     * get Password
+     *
+     * @return  string
+     */
+    public function getPassword() {
+        return $this->password;
     }
 
 }
