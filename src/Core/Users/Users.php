@@ -35,7 +35,6 @@ class User implements UserInterface
 		if($password == $this->password){
 			return true;
 		}
-
 		return false;
 	}	
 
@@ -83,5 +82,4 @@ class User implements UserInterface
 	{
 		return $this->lastName;
 	}
-
 }
