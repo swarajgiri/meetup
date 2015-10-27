@@ -3,14 +3,16 @@ namespace Meetup\Login\Core;
 
 use Meetup\Login\Core\Users\UserInterface;
 
-/**
- * UserData Interface
- *
- * Represents Users entity.
- */
-interface UserData extends UserInterface
+
+class UserData implements UserInterface
 {
 
+    protected $firstname;
+    protected $email;
+    protected $password;
+    protected $createdDate;
+    
+   
     /**
      * Get first name
      *
@@ -84,4 +86,8 @@ interface UserData extends UserInterface
         $this->createdDate=$datetime;
     }
 }
+$obj = new UserData();
+$obj->getFirstName();
+$obj->getEmail();
+
 ?>
